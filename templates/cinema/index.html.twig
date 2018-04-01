@@ -17,4 +17,28 @@
         <li>Your template at <code>templates/cinema/index.html.twig</code></li>
     </ul>
 </div>
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+<div class="col-md-6">
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+<!-- alert success -->
+   {% if app.session.flashBag.has('success') %}
+ <div class="alert alert-success alert-dismissable">
+   <a class="close" data-dismiss="alert" aria-label="close">×</a>
+     {% for msg in app.session.flashBag.get('success') %}
+         {{ msg }}
+     {% endfor %}
+ </div>
+ <!-- alert insuccess -->
+ {% elseif app.session.flashBag.has('notsuccess') %}
+ <div class="alert alert-danger alert-dismissable">
+   <a class="close" data-dismiss="alert" aria-label="close">×</a>
+    {% for msg in app.session.flashBag.get('notsuccess') %}
+        {{ msg }}
+    {% endfor %}
+  </div>
+{% endif %}
+<!-- end alert -->
+</div>
 {% endblock %}
